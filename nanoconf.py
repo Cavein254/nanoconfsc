@@ -6,9 +6,9 @@ import contextlib
 import json
 
 class NanoConf:
-    def __init__(self, cfg_path=None):
-        self._cfg_path = cfg_path
-        self._name = self._cfg_path.name
+    def __init__(self, cfg_path="."):
+        self._cfg_path = Path(cfg_path)
+        self._name = self._cfg_path.stem
         if self._cfg_path.is_dir():
             for sub in self._cfg_path.glob("*.nconf"):
                 new_conf = NanoConf(sub)
