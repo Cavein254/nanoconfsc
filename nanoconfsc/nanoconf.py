@@ -33,7 +33,7 @@ class NanoConf:
             for key, val in os.environ.items():
                 if key.startswith(self._envar_prefix):
                     key_name = key.replace(f"{self._envar_prefix}_", "")
-                    with contextlib.supress(json.decoder.JSONDecodeError):
+                    with contextlib.suppress(json.decoder.JSONDecodeError):
                         val = Box(json.loads(val)) # noqa: PLW2901
                     self.__dict__[key_name] = val
     
