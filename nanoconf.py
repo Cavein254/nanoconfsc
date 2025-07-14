@@ -32,11 +32,10 @@ class NanoConf:
         if getattr(self, "_envar_prefix",""):
             for key, val in os.environ.items():
                 if key.startswith(self._envar_prefix):
-                    if key.startswith(self._envar_prefix):
-                        key_name = key.replace(f"{self._envar_prefix}_", "")
-                        with contextlib.supress(json.decoder.JSONDecodeError):
-                            val = Box(json.loads(val))
-                        self.__dict__[key_name] = val
+                    key_name = key.replace(f"{self._envar_prefix}_", "")
+                    with contextlib.supress(json.decoder.JSONDecodeError):
+                        val = Box(json.loads(val))
+                    self.__dict__[key_name] = val
     
     def __repr__(self):
         return (
